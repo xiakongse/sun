@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../jquery-3.3.1.min.js"></script>
+		<style>
+			.box{
+				width: 400px;
+				height: 400px;
+				background: yellow;
+			}
+			.boxSpx{
+				width: 30px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript">
+			/*$(function() {
+				var urlParamStr=document.location.search.substring(1);
+				console.log(urlParamStr)
+			}*/
+			$(document).ready(function(){
+				/*var urlParamStr=document.location.search.substring(1);
+				if(urlParamStr.indexOf("#")>0){
+					urlParamStr=urlParamStr.substring(0,urlParamStr.indexOf("#"));
+				}
+				var urlParams=urlParamStr.split(urlParamStr=urlParamStr.substring(0,urlParamStr.indexOf("#"));
+				}
+				var urlParams=urlParamStr.split("&");
+				for(var i=0;i<urlParams.length;i++){
+					var values=urlParams[i].split("=");
+					param[values[0]]=unescape(values[1]);
+				}"&");
+				for(var i=0;i<urlParams.length;i++){
+					var values=urlParams[i].split("=");
+					param[values[0]]=unescape(values[1]);
+				}*/
+				$("#but").on('click',function(){
+					
+					$("#loading").ajaxStart(function(){
+						$($(this)).show();
+						//$(this).css("display","block");
+					})
+					$.ajax({
+						type:"get",
+						url:"text.json",
+						async:true,
+						success:function(result){
+							$("#loading").ajaxStart(function(){
+						$(this).hide();
+					})
+							$("#name").html(result.name);
+							$("#imgl").attr('src',result.src)
+						},
+						error:function(){
+							
+						}
+					});
+				})
+				
+				$("#tijiao").on('click',function(){
+				window.location.href="https://www.baidu.com"
+			})
+			})
+			
+		</script>
+	</head>
+	<body>
+		<div id="checkBoxList" class="box">
+			前面的输入内容：<span class="boxSpx">urlParamStr</span>
+			<div style="color: red;display: none;" id="loading" >图片加载中......</div>
+			<input type="button" id="but" value="加载">
+			<div id="name"></div>
+			<img src="" id="imgl">
+			<form name="formList">
+				<label>姓名：</label><input value="" type="text" name="name" value=""><br>
+				<label>年龄：</label><input value="" type="text" name="age" value=""><br>
+				<label>工作：</label><input value="" type="text" name="work" value=""><br>
+				<input type="submit" id="button">
+				
+			</form>
+			
+			<div id ="box"></div>
+			<input type="button" id="tijiao" value="跳转">
+		</div>
+	</body>
+</html>
